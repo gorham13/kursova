@@ -1,0 +1,4 @@
+kursach.MainActivity, kursach;md56e146526e6b0ab347af225c74bb906b2.MainActivity
+kursach.MainActivity, kursach, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md56e146526e6b0ab347af225c74bb906b2.MainActivity
+kursach.MainActivity;md56e146526e6b0ab347af225c74bb906b2.MainActivity
+kursach.MainActivity;md56e146526e6b0ab347af225c74bb906b2.MainActivity
