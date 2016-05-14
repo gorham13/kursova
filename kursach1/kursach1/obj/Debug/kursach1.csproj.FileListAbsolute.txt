@@ -1,0 +1,11 @@
+c:\users\igor\documents\visual studio 2015\Projects\kursach1\kursach1\bin\Debug\kursach1.exe.config
+c:\users\igor\documents\visual studio 2015\Projects\kursach1\kursach1\bin\Debug\kursach1.exe
+c:\users\igor\documents\visual studio 2015\Projects\kursach1\kursach1\bin\Debug\kursach1.pdb
+c:\users\igor\documents\visual studio 2015\Projects\kursach1\kursach1\obj\Debug\kursach1.csprojResolveAssemblyReference.cache
+c:\users\igor\documents\visual studio 2015\Projects\kursach1\kursach1\obj\Debug\kursach1.Form1.resources
+c:\users\igor\documents\visual studio 2015\Projects\kursach1\kursach1\obj\Debug\kursach1.Properties.Resources.resources
+c:\users\igor\documents\visual studio 2015\Projects\kursach1\kursach1\obj\Debug\kursach1.csproj.GenerateResource.Cache
+c:\users\igor\documents\visual studio 2015\Projects\kursach1\kursach1\obj\Debug\kursach1.exe
+c:\users\igor\documents\visual studio 2015\Projects\kursach1\kursach1\obj\Debug\kursach1.pdb
+C:\Users\igor\documents\visual studio 2015\Projects\kursach1\kursach1\obj\Debug\kursach1.Form2.resources
+C:\Users\igor\documents\visual studio 2015\Projects\kursach1\kursach1\obj\Debug\kursach1.Form3.resources

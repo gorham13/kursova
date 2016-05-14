@@ -1,0 +1,7 @@
+<node text="Грань">
+  <node text="Лінія">
+    <node text="Точка" />
+  </node>
+  <node text="Лінія" />
+  <node text="Лінія" />
+</node>
