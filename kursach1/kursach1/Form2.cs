@@ -25,6 +25,7 @@ namespace kursach1
             f.setTree(textBox1.Text);
             f.path += textBox1.Text;
             Directory.CreateDirectory(f.path);
+            Directory.CreateDirectory(f.path+"\\"+textBox1.Text);
             this.Close();
         }
     }

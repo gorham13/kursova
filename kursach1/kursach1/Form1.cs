@@ -22,6 +22,7 @@ namespace kursach1
             this.button2.Anchor = (AnchorStyles.Bottom | AnchorStyles.Right);
             this.button3.Anchor = (AnchorStyles.Bottom | AnchorStyles.Right);
             this.button4.Anchor = (AnchorStyles.Bottom | AnchorStyles.Right);
+            this.button5.Anchor = (AnchorStyles.Bottom | AnchorStyles.Right);
             this.textBox1.Anchor = (AnchorStyles.Bottom | AnchorStyles.Left);
             this.treeView1.Anchor = (AnchorStyles.Top | AnchorStyles.Left);
             this.pictureBox1.Anchor = (AnchorStyles.Top | AnchorStyles.Right);
@@ -33,10 +34,29 @@ namespace kursach1
         {
             treeView1.Nodes.Add(text);
         }
+        public void setRich(string text)
+        {
+            richTextBox1.Text = text;
+        }
+        public string getNode()
+        {
+            return treeView1.SelectedNode.Text;
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             if (textBox1.Text != "")
-                treeView1.SelectedNode.Nodes.Add(textBox1.Text);
+            {
+                try
+                {
+                    treeView1.SelectedNode.Nodes.Add(textBox1.Text);
+                    Directory.CreateDirectory(path + "\\" + textBox1.Text);
+                }
+                catch(System.NullReferenceException)
+                {
+                    MessageBox.Show("Оберіть елемент");
+                }
+            }
             else
                 MessageBox.Show("Введіть ім'я");
         }
@@ -54,27 +74,29 @@ namespace kursach1
         private void button4_Click(object sender, EventArgs e)
         {
             string path1 = "";
-            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            OpenFileDialog fbd = new OpenFileDialog();
             DialogResult dr = fbd.ShowDialog();
-            if(dr == DialogResult.OK)
+            if (dr == DialogResult.OK)
             {
-                path1 = fbd.SelectedPath;
+                path1 = fbd.FileName;
+                File.Copy(path1, path + "\\" + treeView1.SelectedNode.Text + "\\foto.jpg");
+                pictureBox1.Image = new Bitmap(path + "\\" + getNode() + "\\foto.jpg");
             }
-
         }
 
         private void Form1_Resize(object sender, EventArgs e)
         {
-            this.treeView1.Size = new Size(this.Width/3, this.Height - 90);
+            this.treeView1.Size = new Size(this.Width/3, this.Height - 95);
+            this.treeView1.Top = 20;
             this.richTextBox1.Size = new Size((this.Width / 3) * 2 - 40, (this.Height / 3) - 15);
             this.richTextBox1.Top = (this.Height / 3) * 2 - 60;
             this.richTextBox1.Left = this.Width / 3 + 20;
-            this.pictureBox1.Size = new Size((this.Width / 3) * 2 - 40, (this.Height / 3) * 2 - 80);
-            this.pictureBox1.Top = 15;
+            this.pictureBox1.Size = new Size((this.Width / 3) * 2 - 40, (this.Height / 3) * 2 - 85);
+            this.pictureBox1.Top = 20;
             this.pictureBox1.Left = this.Width / 3 + 20;
+            this.textBox1.Size = new Size(this.button5.Left - 20, this.textBox1.Height);
         }
 
-        StringWriter sw = new StringWriter();
         private void зберегтиФайлToolStripMenuItem_Click(object sender, EventArgs e)
         {
             XmlTextWriter xw = new XmlTextWriter(path+"\\"+path.Substring(path.LastIndexOf("\\"))+".xml", null);
@@ -86,22 +108,53 @@ namespace kursach1
 
         public void open()
         {
-            FolderBrowserDialog fbd = new FolderBrowserDialog();
-            fbd.SelectedPath = @"C:\Users\igor\Documents\Visual Studio 2015\Projects\kursach1\kursach1\bin\Debug\Дерева";
-            DialogResult dr = fbd.ShowDialog();
-            if (dr == DialogResult.OK)
+            try
             {
-                path = fbd.SelectedPath;
+                FolderBrowserDialog fbd = new FolderBrowserDialog();
+                fbd.SelectedPath = @"C:\Users\igor\Documents\Visual Studio 2015\Projects\kursach1\kursach1\bin\Debug\Дерева";
+                DialogResult dr = fbd.ShowDialog();
+                if (dr == DialogResult.OK)
+                {
+                    path = fbd.SelectedPath;
+                }
+                treeView1.Nodes.Clear();
+                XmlTextReader xr = new XmlTextReader(path + path.Substring(path.LastIndexOf("\\")) + ".xml");
+                TreeViewToXML.Read(xr, treeView1.Nodes);
+                pictureBox1.Image = new Bitmap("camera_200.png");
             }
-            treeView1.Nodes.Clear();
-            StringReader sr = new StringReader(sw.ToString());
-            XmlTextReader xr = new XmlTextReader(path + path.Substring(path.LastIndexOf("\\")) + ".xml");
-            TreeViewToXML.Read(xr, treeView1.Nodes);
+            catch(System.IO.FileNotFoundException)
+            {
+                MessageBox.Show("Оберіть коректну папку і спробуйте знову відкрити файл");
+            }
         }
 
         private void відкритиФайлToolStripMenuItem_Click(object sender, EventArgs e)
         {
             open();
+        }
+
+        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            richTextBox1.Clear();
+            if (File.Exists(path + "\\" + getNode() + "\\text.txt"))
+            {
+                string[] s1 = File.ReadAllLines(path + "\\" + getNode() + "\\text.txt");
+                foreach (string s in s1)
+                    richTextBox1.Text += (s+"\n");
+            }
+            if (File.Exists(path + "\\" + getNode() + "\\foto.jpg"))
+            {
+                pictureBox1.Image = new Bitmap(path + "\\" + getNode() + "\\foto.jpg");
+            }
+            else
+                pictureBox1.Image = new Bitmap("camera_200.png");
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Form4 f4 = new Form4(this, richTextBox1.Text);
+            f4.Show();
         }
     }
     public class TreeViewToXML

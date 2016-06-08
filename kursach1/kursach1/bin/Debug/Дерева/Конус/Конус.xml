@@ -1,0 +1,9 @@
+<node text="Конус">
+  <node text="Коло">
+    <node text="Центр" />
+    <node text="Точки" />
+  </node>
+  <node text="Трикутник">
+    <node text="Сторони" />
+  </node>
+</node>

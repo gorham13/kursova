@@ -29,6 +29,7 @@ namespace kursach1
         private void button1_Click(object sender, EventArgs e)
         {
             f1.open();
+            this.Close();
         }
     }
 }

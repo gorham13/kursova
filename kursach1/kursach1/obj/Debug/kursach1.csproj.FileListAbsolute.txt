@@ -9,3 +9,4 @@ c:\users\igor\documents\visual studio 2015\Projects\kursach1\kursach1\obj\Debug\
 c:\users\igor\documents\visual studio 2015\Projects\kursach1\kursach1\obj\Debug\kursach1.pdb
 C:\Users\igor\documents\visual studio 2015\Projects\kursach1\kursach1\obj\Debug\kursach1.Form2.resources
 C:\Users\igor\documents\visual studio 2015\Projects\kursach1\kursach1\obj\Debug\kursach1.Form3.resources
+C:\Users\igor\documents\visual studio 2015\Projects\kursach1\kursach1\obj\Debug\kursach1.Form4.resources
